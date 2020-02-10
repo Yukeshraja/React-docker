@@ -1,6 +1,6 @@
 node{
    stage('SCM Checkout'){
-       git credentialsId: 'git-creds', url: 'https://github.com/javahometech/my-app'
+       checkout scm
    }
    
    stage('Build Docker Image'){
