@@ -5,18 +5,16 @@ node{
    
    stage('Build Docker Image'){
      sh 'docker build -t yukesh/react .'
-   }     
+   } 
+   
+   stage ('Image Prune') {
+    sh 'docker image prune -a yukesh/react'  
+   }
    stage('Push Docker Image'){
      withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
         sh "docker login -u yukesh -p ${dockerHubPwd}"
      }
-      
-     sh 'docker push yukesh/react'
+      sh 'docker push yukesh/react'
    }
-   stage('Run Container on Dev Server'){
-     def dockerRun = 'docker run -p 8080:8080 -d --name my-app kammana/my-app:2.0.0'
-     sshagent(['dev-server']) {
-       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.198 ${dockerRun}"
-     }
-   }
+   
 }
