@@ -22,7 +22,7 @@ node{
    stage('Run Container on Dev Server'){
      def dockerRun = 'docker run -p 8080:8080 -d --name react yukesh/react'
      sshagent(['dev-server']) {
-       sh "ssh root@18.222.0.73 ${dockerRun}"
+       sh "ssh root@18.222.0.73"
      }
    }
    
