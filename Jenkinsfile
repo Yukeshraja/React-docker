@@ -19,4 +19,11 @@ node{
       sh 'docker push yukesh/react'
    }
    
+   stage('Run Container on Dev Server'){
+     def dockerRun = 'docker run -p 8080:8080 -d --name react yukesh/react'
+     sshagent(['dev-server']) {
+       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.0.3.17 ${dockerRun}"
+     }
+   }
+   
 }
