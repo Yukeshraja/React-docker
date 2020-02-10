@@ -1,15 +1,21 @@
-
-
 node{
    stage('SCM Checkout'){
-       checkout scm
+       git credentialsId: 'git-creds', url: 'https://github.com/javahometech/my-app'
    }
    
    stage('Build Docker Image'){
-      def CONTAINER_NAME="react"
-      def CONTAINER_TAG="latest"
-      def DOCKER_HUB_USER="yukesh"
-     sh "docker build -t $container_Name:$CONTAINER_TAG  -t $container_Name --pull --no-cache ."
-     echo "Image build complete"
+     sh 'docker build -t yukesh/react .'
+   }
+   stage('Push Docker Image'){
+     withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerhubpwd')]) {
+        sh "docker login -u yukesh -p ${dockerhubpwd}"
+     }
+     sh 'docker push yukesh/react'
+   }
+   stage('Run Container on Dev Server'){
+     def dockerRun = 'docker run -p 8080:8080 -d --name my-app kammana/my-app:2.0.0'
+     sshagent(['dev-server']) {
+       sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.198 ${dockerRun}"
+     }
    }
 }
