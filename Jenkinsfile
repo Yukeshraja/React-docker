@@ -8,7 +8,7 @@ node{
    } 
    
    stage ('Image Prune') {
-    sh 'docker image prune -a yukesh/react'  
+    sh 'docker image rm -f yukesh/react'  
    }
    stage('Push Docker Image'){
      withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
