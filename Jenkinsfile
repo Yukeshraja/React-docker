@@ -22,7 +22,7 @@ node {
     }
 
     stage('Push to Docker Registry'){
-        withCredentials([usernamePassword(credentialsId: 'dockerHubAccount', usernameVariable: 'yukesh', passwordVariable: 'Yukesh@2991')]) {
+       withCredentials([usernamePassword(credentialsId: 'dockerHubAccount', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
         }
     }
@@ -46,9 +46,9 @@ def imageBuild(containerName, tag){
 }
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword){
-    sh "sudo docker login -u $dockerUser -p $dockerPassword"
-    sh "sudo docker tag $containerName:$tag $dockerUser/$containerName:$tag"
-    sh "sudo docker push $dockerUser/$containerName:$tag"
+    sh "sudo docker login -u $yukesh -p $Yukesh@2991"
+    sh "sudo docker tag $containerName:$tag $yukesh/$containerName:$tag"
+    sh "sudo docker push $yukesh/$containerName:$tag"
     echo "Image push complete"
 }
 
