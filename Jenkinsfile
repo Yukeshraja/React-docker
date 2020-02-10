@@ -46,8 +46,8 @@ def imageBuild(containerName, tag){
 }
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword){
-    sh "sudo docker login -u $yukesh -p $Yukesh@2991"
-    sh "sudo docker tag $containerName:$tag $yukesh/$containerName:$tag"
+    sh "sudo docker login -u yukesh -p Yukesh@2991"
+    sh "sudo docker tag $containerName:$tag yukesh/$containerName:$tag"
     sh "sudo docker push $yukesh/$containerName:$tag"
     echo "Image push complete"
 }
