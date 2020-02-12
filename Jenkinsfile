@@ -1,4 +1,5 @@
 node{
+   agent 
    stage('SCM Checkout'){
        checkout scm
    }
@@ -20,10 +21,8 @@ node{
    }
    
    stage('Run Container on Dev Server'){
-     def dockerRun = 'docker run -p 8080:8080 -d --name react yukesh/react'
-     sshagent(['dev-server']) {
-       sh "ssh root@18.222.0.73"
-     }
+     sh 'docker pull yukesh/react:latest'
+     sh 'docker run -d -p 8000:5000 --name:react yukesh/react:latest'
    }
    
 }
