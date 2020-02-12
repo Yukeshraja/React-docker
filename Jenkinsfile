@@ -17,7 +17,7 @@ pipeline {
     
   stage('Docker-Login'){
     steps {
-     sh 'sudo docker login -u=yukesh -p=$REGISTRY_AUTH_PSW'
+     sh 'sudo docker login -u=yukesh -p=Yukesh@2991'
     }}  
       
 }
