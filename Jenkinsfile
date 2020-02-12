@@ -28,7 +28,7 @@ pipeline {
     
     stage('Dev-docker-deploy'){
     steps {
-     sh 'sudo docker run --name=react -d -p 8800:5000 - yukesh/react:latest'
+     sh 'sudo docker run --name=react -d -p 8800:5000  yukesh/react:latest'
     }}  
    
       
