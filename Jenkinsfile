@@ -1,8 +1,5 @@
 pipeline {
-  environment {
-    registry = "yukesh/react"
-    registryCredential = ‘dockerhub’
-}
+  
   agent {
     label 'slave01'
   }
