@@ -5,7 +5,7 @@ pipeline {
     stages {
     stage('Image Prune') {
       steps {
-        sh 'docker image rm -f yukesh/react'
+        sh 'sudo docker image rm -f yukesh/react'
       }
     }
     }
