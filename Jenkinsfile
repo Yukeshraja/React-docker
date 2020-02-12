@@ -17,7 +17,7 @@ pipeline {
     
   stage('Docker-Login'){
     steps {
-     sh 'docker login -u=$REGISTRY_AUTH_USR -p=$REGISTRY_AUTH_PSW'
+     sh 'sudo docker login -u=$REGISTRY_AUTH_USR -p=$REGISTRY_AUTH_PSW'
     }}  
       
 }
