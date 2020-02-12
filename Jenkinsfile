@@ -18,10 +18,6 @@ pipeline {
      sh 'dockerImage = docker.build registry + ":$BUILD_NUMBER"'
     } }
       
-    stage('Push Docker Image'){
-     sh 'docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()'
-    } } 
 }
 }
    /*
