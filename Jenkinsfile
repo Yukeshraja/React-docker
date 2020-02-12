@@ -15,7 +15,10 @@ pipeline {
      sh 'sudo docker build -t yukesh/react:latest .'
     }}
     
-   
+  stage('Build Docker Image'){
+    steps {
+     sh 'docker login -u=$REGISTRY_AUTH_USR -p=$REGISTRY_AUTH_PSW'
+    }}  
       
 }
 }
