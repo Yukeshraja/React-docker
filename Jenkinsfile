@@ -13,6 +13,12 @@ pipeline {
     steps {
      sh 'sudo docker build -t yukesh/react .'
     } }
+      
+    stage('Push Docker Image'){
+     withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+    steps {
+     sh 'sudo docker push yukesh/react'
+    } } 
 }
 }
    /*
