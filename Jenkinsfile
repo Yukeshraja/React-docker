@@ -3,17 +3,22 @@ pipeline {
   agent {
     label 'slave01'
   }
-    stages {
+  
+  stages {
     stage('Image Prune') {
       steps {
         sh 'sudo docker image rm -f yukesh/react'
-      }
-    }
+      }}
   
   stage('Build Docker Image'){
     steps {
      sh 'sudo docker build -t yukesh/react:latest .'
-    } }
+    }}
+    
+   stage('Build Docker Image'){
+    steps {
+     sh 'docker login -u=$REGISTRY_AUTH_USR -p=$REGISTRY_AUTH_PSW'
+    }} 
       
 }
 }
