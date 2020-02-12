@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "yukesh/react"
+    registryCredential = ‘dockerhub’
+}
   agent {
     label 'slave01'
   }
@@ -11,14 +15,13 @@ pipeline {
   
   stage('Build Docker Image'){
     steps {
-     sh 'sudo docker build -t yukesh/react .'
+     sh 'dockerImage = docker.build registry + ":$BUILD_NUMBER"'
     } }
       
     stage('Push Docker Image'){
-     withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-    steps {
-     sh 'sudo docker push yukesh/react'
-    } } }
+     sh 'docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()'
+    } } 
 }
 }
    /*
