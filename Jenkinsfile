@@ -12,7 +12,7 @@ pipeline {
   
   stage('Build Docker Image'){
     steps {
-     sh 'dockerImage = docker.build registry + ":$BUILD_NUMBER"'
+     sh 'sudo docker build -t yukesh/react:latest'
     } }
       
 }
