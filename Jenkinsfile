@@ -1,5 +1,5 @@
 node{
-   agent 
+   agent slave01
    stage('SCM Checkout'){
        checkout scm
    }
