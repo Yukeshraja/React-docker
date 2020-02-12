@@ -3,7 +3,8 @@ node{
    stage('SCM Checkout'){
        checkout scm
    }
-   
+  
+   /*
     stage ('Image Prune') {
     sh 'docker image rm -f yukesh/react'  
    }
