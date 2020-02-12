@@ -18,7 +18,7 @@ pipeline {
   stage('Push Registry'){
     steps {
      sh 'sudo docker login -u=yukesh -p=Yukesh@2991'
-     sh 'sudo docker push yukesh/react:latest
+     sh 'sudo docker push yukesh/react:latest'
     }}  
     
     stage('Remove Container'){
