@@ -12,7 +12,7 @@ pipeline {
   
   stage('Build Docker Image'){
     steps {
-     sh 'sudo docker build -t yukesh/react:latest'
+     sh 'sudo docker build -t yukesh/react:latest .'
     } }
       
 }
