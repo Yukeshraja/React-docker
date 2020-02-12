@@ -8,10 +8,12 @@ pipeline {
         sh 'sudo docker image rm -f yukesh/react'
       }
     }
-    }
+  
   stage('Build Docker Image'){
+    steps {
      sh 'docker build -t yukesh/react .'
-   } 
+    } }
+}
 }
    /*
     
