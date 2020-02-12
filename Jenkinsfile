@@ -18,7 +18,7 @@ pipeline {
      withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
     steps {
      sh 'sudo docker push yukesh/react'
-    } } 
+    } } }
 }
 }
    /*
