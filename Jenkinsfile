@@ -1,9 +1,15 @@
-node{
-   agent slave01
-   stage('SCM Checkout'){
-       checkout scm
-   }
-  
+pipeline {
+  agent {
+    label 'slave01'
+  }
+    stages {
+    stage('Image Prune') {
+      steps {
+        sh 'docker image rm -f yukesh/react'
+      }
+    }
+    }
+}
    /*
     stage ('Image Prune') {
     sh 'docker image rm -f yukesh/react'  
