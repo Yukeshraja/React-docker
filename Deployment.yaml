@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: React
+  name: React-Deployment
+  labels:
+    app: React
+    env: dev
+    service: React
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: React
+      service: React
+  template:
+    metadata:
+      labels:
+        app: React
+        service: React
+      containers:
+      - name: React-service-container
+        image: docker.io/yukesh/react:latest
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "250Mi"
+          limits:
+            cpu: "750m"
+            memory: "500Mi"
+        ports:
+        - containerPort: 5000
+          name: React-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dev-backend
+  name: React-service
+  labels:
+    app: React
+    env: dev
+    service: React
+spec:
+  selector:
+    app: React
+    service: React
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      name: React-port
