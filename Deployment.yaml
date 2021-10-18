@@ -2,52 +2,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: React
-  name: React-Deployment
   labels:
-    app: React
-    env: dev
-    service: React
+    app: react
+    service: react
+  name: react-service
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: React
-      service: React
+      app: react
+      service: react
   template:
     metadata:
       labels:
-        app: React
-        service: React
+        app: react
+        service: react
+    spec:
       containers:
-      - name: React-service-container
-        image: docker.io/yukesh/react:latest
-        resources:
-          requests:
-            cpu: "250m"
-            memory: "250Mi"
-          limits:
-            cpu: "750m"
-            memory: "500Mi"
-        ports:
-        - containerPort: 5000
-          name: React-port
+        -
+          image: "docker.io/yukesh/react:latest"
+          name: react-service
+          ports:
+            -
+              containerPort: 5000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: dev-backend
-  name: React-service
   labels:
-    app: React
-    env: dev
-    service: React
+    app: react
+  name: react-service
 spec:
-  selector:
-    app: React
-    service: React
   ports:
-    - protocol: TCP
+    -
+      name: react-port
       port: 5000
+      protocol: TCP
       targetPort: 5000
-      name: React-port
+  selector:
+    app: react
+    service: React
