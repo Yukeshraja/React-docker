@@ -1,0 +1,34 @@
+pipeline{
+     agent { label 'master'}
+      environment {
+        Docker_Username = credentials('docker_username')
+        Docker_pass = credentials('docker_password')
+        repo = credentials('repo')
+        Artifactory_User = credentials('Artifactory_User')
+        Artifactory_Pass = credentials('Artifactory_Pass')
+        Artifactory_Repo = credentials('Artifactory_Repo') }
+     stages {
+        
+	    stage ('Docker Build') {
+          steps{
+              script{
+                sh ("cd /var/lib/jenkins/workspace/dev-mt/react-release/ && sudo docker build -t .")
+               
+
+     }}}
+     
+      //   stage ('Docker-Tagging'){
+	     //   steps{
+	     //     script{			
+      //             sh ("sudo docker tag ${JOB_BASE_NAME} ${repo}/$helm/sciendev-ether-iris-ui:latest")
+	     // }}}
+     
+      //       stage('Pushing image into Harbor') {
+      //   steps {
+      //      script {
+      //               sh ("sudo docker login $repo -u '$Docker_Username' -p '$Docker_pass'")
+      //               sh ("sudo docker push  ${repo}/$helm/sciendev-ether-iris-ui:latest ")
+      //           }}}
+      
+
+     }}
